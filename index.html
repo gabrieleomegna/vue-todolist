@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+        <h1>
+            Vue 3 Cities List
+        </h1>
+        <main class="wrapper">
+            <div class="search-bar">
+                <input type="text" class="new-todo-element" name="userTodo" id="userTodo" v-model="newTodoElement" @keyup.enter="addNewTodoItem(newTodoElement)">
+            </div>
+            <ul class="todo-list" v-if="todoList.length > 0">
+                <li class="todo-item" v-for="(todoElement, index) in todoList" :data-id="todoElement.itemID">
+                    <p :class="(todoElement.done) ? 'removed' : ''" @click="interactWithElement(index)">
+                        {{ todoElement.itemID }} - {{ todoElement.text }}
+                    </p>
+                    <span>
+                        <i class="fa-solid fa-xmark" @click="removeTodoItem(todoElement.itemID)"></i>
+                    </span>
+                </li>
+            </ul>
+            <p v-else>
+                No more item in this list!!!
+            </p>
+        </main>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
